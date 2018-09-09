@@ -22,6 +22,26 @@ namespace CPE200Lab1
                 {
                     numbers.Push(parts[i]);
                 }
+                else if (thisisOperator(parts[i]))
+                {
+                    string st;
+                    st = numbers.Peek();
+                    numbers.Pop();
+                    numbers.Push(unaryCalculate(parts[i],st,8));
+                }
+                else if (isModOpreator(parts[i]))
+                {
+                    string st, nd;
+                    if (numbers.Count < 2)
+                    {
+                        return "E";
+                    }
+                    nd = numbers.Peek();
+                    numbers.Pop();
+                    st = numbers.Peek();
+                    numbers.Pop();
+                    numbers.Push(thismodCalculator(st, nd, 8));
+                }
                 else if (isOperator(parts[i]))
                 {
                     if (numbers.Count < 2)
@@ -46,7 +66,7 @@ namespace CPE200Lab1
                 return "E";
             }
             // your code here
-            return "E";
+
         }
     }
 }

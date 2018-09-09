@@ -25,18 +25,51 @@ namespace CPE200Lab1
             }
             return false;
         }
+        public bool isModOpreator(string str)
+        {
+            if(str == "%")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public bool thisisOperator(string str)
+        {
+            switch (str)
+            {
+                case "√":
+                case "1/x":
+                    return true;
+            }
+            return false;
+        }
 
         public string Process(string str)
         {
             string[] parts = str.Split(' ');
-            if(!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
+            if (parts.Length >= 4)
             {
-                return "E";
-            } else
+                if (isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2]) && isModOpreator(parts[3]))
+                {
+                    return modCalculate(parts[1], parts[0], parts[2], 4);
+                }
+            }
+            if (isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2]))
             {
                 return calculate(parts[1], parts[0], parts[2], 4);
             }
+            else if (isNumber(parts[0]) && thisisOperator(parts[1]))
+            {
+                return unaryCalculate(parts[1], parts[0], 4);
+            }
 
+            else
+            {
+                return "E";
+            }
         }
         public string unaryCalculate(string operate, string operand, int maxOutputSize = 8)
         {
@@ -82,8 +115,29 @@ namespace CPE200Lab1
                         return result.ToString("N" + remainLength).Contains(".") ? result.ToString("N" + remainLength).TrimEnd('0').TrimEnd('.') : result.ToString("N" + remainLength);
                     }
                     break;
+                
             }
             return "E";
+        }
+        public string modCalculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
+        {
+            switch (operate)
+            {
+                case "+":
+                    return (Convert.ToDouble(firstOperand) + (Convert.ToDouble(firstOperand) * (0.01 * Convert.ToDouble(secondOperand)))).ToString();
+                case "-":
+                    return (Convert.ToDouble(firstOperand) - (Convert.ToDouble(firstOperand) * (0.01 * Convert.ToDouble(secondOperand)))).ToString();
+                case "X":
+                    return (Convert.ToDouble(firstOperand) * (Convert.ToDouble(firstOperand) * (0.01 * Convert.ToDouble(secondOperand)))).ToString();
+                case "÷":
+                    return (Convert.ToDouble(firstOperand) / (Convert.ToDouble(firstOperand) * (0.01 * Convert.ToDouble(secondOperand)))).ToString();
+            }
+            return "E";
+        }
+        public string thismodCalculator(string firstOperand, string secondOperand, int maxOutputSize = 8)
+        {
+
+            return (Convert.ToDouble(firstOperand) * (0.01 * Convert.ToDouble(secondOperand))).ToString();
         }
 
         public string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
