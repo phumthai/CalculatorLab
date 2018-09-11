@@ -21,11 +21,12 @@ namespace CPE200Lab1
                 case "-":
                 case "X":
                 case "÷":
+                case "%":
                     return true;
             }
             return false;
         }
-        public bool isModOpreator(string str)
+        /*public bool isModOpreator(string str)
         {
             if(str == "%")
             {
@@ -35,7 +36,7 @@ namespace CPE200Lab1
             {
                 return false;
             }
-        }
+        }*/
         public bool thisisOperator(string str)
         {
             switch (str)
@@ -52,7 +53,7 @@ namespace CPE200Lab1
             string[] parts = str.Split(' ');
             if (parts.Length >= 4)
             {
-                if (isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2]) && isModOpreator(parts[3]))
+                if (isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2]) && isOperator(parts[3]))
                 {
                     return modCalculate(parts[1], parts[0], parts[2], 4);
                 }

@@ -29,7 +29,7 @@ namespace CPE200Lab1
                     numbers.Pop();
                     numbers.Push(unaryCalculate(parts[i],st,8));
                 }
-                else if (isModOpreator(parts[i]))
+                else if (parts[i]== "%")
                 {
                     string st, nd;
                     if (numbers.Count < 2)
