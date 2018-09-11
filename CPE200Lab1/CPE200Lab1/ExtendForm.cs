@@ -35,18 +35,8 @@ namespace CPE200Lab1
                 case 'X':
                 case '÷':
                 case '%':
-                    return true;
-            }
-            return false;
-        }
-
-        private bool thisisoperator(string str)
-        {
-            switch (str)
-            {
-                case "1/x":
-                case "%":
-                case "√":
+                case '√':
+                case 'x':
                     return true;
             }
             return false;
