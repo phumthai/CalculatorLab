@@ -51,24 +51,22 @@ namespace CPE200Lab1
         public string Process(string str)
         {
             string[] parts = str.Split(' ');
-            if (parts.Length >= 4)
+            try
             {
-                if (isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2]) && isOperator(parts[3]))
+                if (parts.Length == 4)
                 {
                     return modCalculate(parts[1], parts[0], parts[2], 4);
                 }
-            }
-            if (isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2]))
-            {
+                if(parts.Length == 2)
+                {
+                    return unaryCalculate(parts[1], parts[0], 4);
+                }
                 return calculate(parts[1], parts[0], parts[2], 4);
-            }
-            else if (isNumber(parts[0]) && thisisOperator(parts[1]))
-            {
-                return unaryCalculate(parts[1], parts[0], 4);
-            }
 
-            else
+            }
+            catch(Exception ex)
             {
+                Console.WriteLine(ex);
                 return "E";
             }
         }
