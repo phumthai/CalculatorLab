@@ -215,7 +215,7 @@ namespace CPE200Lab1
 
         }
 
-        private void thisOperator_Click(object sender, EventArgs e)
+        /*private void thisOperator_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
             {
@@ -229,6 +229,6 @@ namespace CPE200Lab1
                 lblDisplay.Text += " " + ((Button)sender).Text + " ";
                 isSpaceAllowed = false;
             }
-        }
+        }*/
     }
 }
