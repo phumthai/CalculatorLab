@@ -31,29 +31,39 @@ namespace CPE200Lab1
                 }
                 else if (parts[i]== "%")
                 {
-                    string st, nd;
-                    if (numbers.Count < 2)
+                    try
                     {
+                        string st, nd;
+                        nd = numbers.Peek();
+                        numbers.Pop();
+                        st = numbers.Peek();
+                        numbers.Pop();
+                        numbers.Push(thismodCalculator(st, nd, 8));
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex);
                         return "E";
                     }
-                    nd = numbers.Peek();
-                    numbers.Pop();
-                    st = numbers.Peek();
-                    numbers.Pop();
-                    numbers.Push(thismodCalculator(st, nd, 8));
+
                 }
                 else if (isOperator(parts[i]))
                 {
-                    if (numbers.Count < 2)
+                    try
                     {
+                        string st, nd;
+                        nd = numbers.Peek();
+                        numbers.Pop();
+                        st = numbers.Peek();
+                        numbers.Pop();
+                        numbers.Push(calculate(parts[i], st, nd, 8));
+                    }
+                    catch(Exception ex)
+                    {
+                        Console.WriteLine(ex);
                         return "E";
                     }
-                    string st, nd;
-                    nd = numbers.Peek();
-                    numbers.Pop();
-                    st = numbers.Peek();
-                    numbers.Pop();
-                    numbers.Push(calculate(parts[i], st, nd, 8));
+                    
                 }
 
             }
