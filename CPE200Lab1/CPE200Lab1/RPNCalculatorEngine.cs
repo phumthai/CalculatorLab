@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class RPNCalculatorEngine : CalculatorEngine
+    public class RPNCalculatorEngine : TheCalculatorEngine
     {
-        public string Process(string str)
+        public string calculate(string str)
         {
             Stack<string> numbers = new Stack<string>();
             string[] parts = str.Split(' ');
@@ -27,43 +27,35 @@ namespace CPE200Lab1
                     string st;
                     st = numbers.Peek();
                     numbers.Pop();
-                    numbers.Push(unaryCalculate(parts[i],st,8));
+                    numbers.Push(calculate(parts[i],st,8));
                 }
                 else if (parts[i]== "%")
                 {
-                    try
+                    string st, nd;
+                    if (numbers.Count < 2)
                     {
-                        string st, nd;
-                        nd = numbers.Peek();
-                        numbers.Pop();
-                        st = numbers.Peek();
-                        numbers.Pop();
-                        numbers.Push(thismodCalculator(st, nd, 8));
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine(ex);
                         return "E";
                     }
+                    nd = numbers.Peek();
+                    numbers.Pop();
+                    st = numbers.Peek();
+                    numbers.Pop();
+                    numbers.Push(thismodCalculator(st, nd, 8));
 
                 }
                 else if (isOperator(parts[i]))
                 {
-                    try
+                    if (numbers.Count < 2)
                     {
-                        string st, nd;
-                        nd = numbers.Peek();
-                        numbers.Pop();
-                        st = numbers.Peek();
-                        numbers.Pop();
-                        numbers.Push(calculate(parts[i], st, nd, 8));
-                    }
-                    catch(Exception ex)
-                    {
-                        Console.WriteLine(ex);
                         return "E";
                     }
-                    
+                    string st, nd;
+                    nd = numbers.Peek();
+                    numbers.Pop();
+                    st = numbers.Peek();
+                    numbers.Pop();
+                    numbers.Push(calculate(parts[i], st, nd, 8));
+
                 }
 
             }
