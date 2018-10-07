@@ -6,14 +6,35 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
+    /// <summary>
+    /// The main CalculatorEngine class.
+    /// Contains all methods for performing basic math functions.
+    /// This class can check number, operator on display.
+    /// This class can check type of calculate.
+    /// This class can calculate +, -, X, ÷, 1/x, %, √.
+    /// </summary>
+    /// <returns>
+    /// Summary of calculate.
+    /// </returns>
     public class CalculatorEngine
     {
+        /// <summary>
+        /// Check number on display.
+        /// </summary>
+        /// <returns>
+        /// Number
+        /// </returns>
         public bool isNumber(string str)
         {
             double retNum;
             return Double.TryParse(str, out retNum);
         }
-
+        /// <summary>
+        /// Check operator on display.
+        /// </summary>
+        /// <returns>
+        /// Operator
+        /// </returns>
         public bool isOperator(string str)
         {
             switch(str) {
@@ -26,17 +47,12 @@ namespace CPE200Lab1
             }
             return false;
         }
-        /*public bool isModOpreator(string str)
-        {
-            if(str == "%")
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }*/
+        /// <summary>
+        /// Check unary operator on display.
+        /// </summary>
+        /// <returns>
+        /// Unary operator
+        /// </returns>
         public bool thisisOperator(string str)
         {
             switch (str)
@@ -47,7 +63,12 @@ namespace CPE200Lab1
             }
             return false;
         }
-
+        /// <summary>
+        /// Check parts of string and return type of calculate.
+        /// </summary>
+        /// <returns>
+        /// Type of calculate.
+        /// </returns>
         public string Process(string str)
         {
             string[] parts = str.Split(' ');
@@ -70,6 +91,13 @@ namespace CPE200Lab1
                 return "E";
             }
         }
+        /// <summary>
+        /// Check type of unary operator.
+        /// Calculate unary.
+        /// </summary>
+        /// <returns>
+        /// Summary of unary calculate.
+        /// </returns>
         public string unaryCalculate(string operate, string operand, int maxOutputSize = 8)
         {
             switch (operate)
@@ -118,6 +146,13 @@ namespace CPE200Lab1
             }
             return "E";
         }
+        /// <summary>
+        /// Check operator.
+        /// Calculate mod.
+        /// </summary>
+        /// <returns>
+        /// Summary of mod calculate.
+        /// </returns>
         public string modCalculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
         {
             switch (operate)
@@ -133,12 +168,22 @@ namespace CPE200Lab1
             }
             return "E";
         }
+        /// <summary>
+        /// Calculate mod in RPN calculator.
+        /// </summary>
+        /// <returns>
+        /// Summary of mod RPNcalculate.
+        /// </returns>
         public string thismodCalculator(string firstOperand, string secondOperand, int maxOutputSize = 8)
         {
-
             return (Convert.ToDouble(firstOperand) * (0.01 * Convert.ToDouble(secondOperand))).ToString();
         }
-
+        /// <summary>
+        /// Check operator.
+        /// </summary>
+        /// <returns>
+        /// Summary of calculate.
+        /// </returns>
         public string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
         {
             switch (operate)

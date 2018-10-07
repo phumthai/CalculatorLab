@@ -6,6 +6,17 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
+    /// <summary>
+    /// The main RPNCalculatorEngine class.
+    /// Push data on display into stack.
+    /// This class can check number, operator on display.
+    /// This class can check type of calculate.
+    /// This class send data in stack to CalculatorEngine.
+    /// This class receive value from CalculatorEngine and push to stack.
+    /// </summary>
+    /// <returns>
+    /// Value in stack.
+    /// </returns>
     public class RPNCalculatorEngine : CalculatorEngine
     {
         public string Process(string str)
